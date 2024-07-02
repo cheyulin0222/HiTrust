@@ -1,0 +1,71 @@
+
+<script>
+import Edit from "@/components/CRM/SS/CNT_Edit.vue"
+import Base from "@/components/CRM/SS/Maint_Base" ;
+import { resetNotifyType } from "@/utils/dataListCrm";
+
+export default {
+	data(){
+		return {
+			title 	: "Contact Notify Type Maintenance" ,
+			tableOption : {
+				colum : [
+					{	
+						classT : "border border-info rounded-0 p-3 text-center alert-primary ",
+						type : 'text',
+						key : ['name'],
+						value : ['通知名稱']
+					},
+					{
+						classT : "border border-info rounded-0 p-3 text-center alert-primary ",
+						type : 'button',
+						key : ['status'],
+						value : [""],
+						classR: "d-flex" ,
+						styleT: "width:100px;",
+						button : [
+							{
+								class : "" ,
+								key : "" ,
+								icon: "fa-pen" ,
+								func : function ( payment ){
+									this.doEdit( payment ) ;
+								}.bind(this)
+							},
+							{
+								class : "" ,
+								key : "" ,
+								icon: "fa-trash-can" ,
+								func : function ( payment ){
+									this.doDel( payment.id );
+								}.bind(this)
+							},
+						]
+					}
+				],
+				endButton : [
+					{
+						value : [""] ,
+						icon: "fa-circle-plus" ,
+						func : function ( payment ){
+							this.doAdd();
+						}.bind(this)
+					}
+				]	
+			},
+			delApi 		: "/contact-notify-type/" ,
+			searchApi	: "/contact-notify-type/all" ,
+		}
+		 
+	},
+    extends : Base ,
+    components : {
+    	Edit
+    },
+    methods : {  	
+    	reset( data ) {
+    		resetNotifyType( data ) ;
+    	}
+    },
+}
+</script>
